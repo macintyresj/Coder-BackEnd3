@@ -1,0 +1,42 @@
+[
+	{
+		"id": 1,
+		"timestamp": "20/8/2021 21:21:52",
+		"nombre": "Jordan",
+		"descripcion": "Funko Pop - Figura Vinilo. Deporte/Basquet",
+		"codigo": "0005",
+		"foto": "https://http2.mlstatic.com/D_Q_NP_888641-MLA45484163454_042021-R.webp",
+		"precio": 5000,
+		"stock": 2
+	},
+	{
+		"id": 2,
+		"timestamp": "20/8/2021 20:06:33",
+		"nombre": "Harry",
+		"descripcion": "Funko Pop - Figura Vinilo. Peliculas/HP",
+		"codigo": "0004",
+		"foto": "https://http2.mlstatic.com/D_Q_NP_742685-MLA45631437623_042021-R.webp",
+		"precio": 4000,
+		"stock": 3
+	},
+	{
+		"id": 3,
+		"timestamp": "28/8/2021 13:00:40",
+		"nombre": "Grogu",
+		"descripcion": "Funko Pop - Figura Vinilo. Series/Mandalorian",
+		"codigo": "0008",
+		"foto": "https://http2.mlstatic.com/D_Q_NP_742685-MLA45631437623_042021-R.webp",
+		"precio": 4200,
+		"stock": 3
+	},
+	{
+		"id": 4,
+		"timestamp": "28/8/2021 13:00:56",
+		"nombre": "Leia",
+		"descripcion": "Funko Pop - Figura Vinilo. Peliculas/SW",
+		"codigo": "0006",
+		"foto": "https://http2.mlstatic.com/D_Q_NP_742685-MLA45631437623_042021-R.webp",
+		"precio": 3590,
+		"stock": 3
+	}
+]

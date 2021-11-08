@@ -1,0 +1,16 @@
+.float-rigth{
+    float: right;
+}
+body{
+    background-color: antiquewhite;
+}
+.botonLimpiar{
+    float: right;
+
+}
+.ocultar {
+    display: none;
+}
+.card{
+box-shadow: 1px 1px 8px gray;
+}
