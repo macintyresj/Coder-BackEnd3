@@ -1,7 +1,7 @@
 require('dotenv').config();
 const nombresPersistencias = {
     1: "fileSystem",
-    2: "mySql",
+    // 2: "mySql",
     3: "MongoDB",
     4: "MongoDB_DBaaS"
 }
@@ -16,19 +16,6 @@ module.exports = {
     TIPO_PERSISTENCIA: nombresPersistencias[4], 
 
     MODO_CLUSTER: false,
-
-    // config mySql Knex
-    mySql: {
-        client: 'mysql',
-        connection: {
-            host: process.env.DB_HOST || '127.0.0.1',
-            port: process.env.DB_PORT || 3306,
-            user: process.env.DB_USER || 'root',
-            password: process.env.DB_PASS || '',
-            database: process.env.DB_NAME
-        },
-        pool: { min: 0, max: 7 }
-    },
 
     // urls mongoDB
     MONGO_URL: process.env.URL_MONGO_LOCAL,
