@@ -10,13 +10,13 @@
                 <img src="${location.href}assets/${data.foto}" width="45px" />
             `
         document.getElementById('btnLogout').innerHTML = `
-                <a class="btn btn-sm btn-danger" href="/auth/logout">Logout</a>
+                <a class="btn btn-sm btn-secondary" href="/auth/logout">Logout</a>
             `
     } else {
         document.getElementById('user').innerHTML = `
             <form class="form-inline">
-                <a class="btn btn-outline-success" href="signup.html">Signup</a>
-                <a class="btn btn-outline-primary" href="login.html">Login</a>
+                <a class="btn btn-outline-light" href="signup.html">Signup</a>
+                <a class="btn btn-outline-light" href="login.html">Login</a>
             </form>
             `
     }
@@ -30,7 +30,7 @@ const renderProducts = (data) => {
     if (Object.keys(data)[0] != 'error') {
         const template = data.map((product) => `
             <div class="col">
-                <div class="card text-white bg-dark">
+                <div class="card bg-light">
                     <img src="${product.foto}" class="card-img-top p-3 w-50 mx-auto">
                     <div class="card-body text-center">
                         <h5 class="card-title">${product.nombre}</h5>
@@ -40,14 +40,14 @@ const renderProducts = (data) => {
                         <p class="card-text">${product.descripcion}</p>
                     </div>
                     <div class="card-footer text-center">
-                        <button class="btn btn-sm btn-success" type="button" onclick="agregarCarrito('${product.id}')">
+                        <button class="btn btn-sm btn-secondary" type="button" onclick="agregarCarrito('${product.id}')">
                             Agregar al carrito
                         </button>
                         <div class="mt-2">
-                            <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#modalEditProduct" onclick="editarProducto('${product.id}')">
+                            <button class="btn btn-sm btn-secondary" type="button" data-toggle="modal" data-target="#modalEditProduct" onclick="editarProducto('${product.id}')">
                                 Editar
                             </button>
-                            <button class="btn btn-sm btn-danger" type="button" onclick="eliminarProducto('${product.id}')">
+                            <button class="btn btn-sm btn-secondary" type="button" onclick="eliminarProducto('${product.id}')">
                                 Eliminar
                             </button>
                         </div>
@@ -90,7 +90,7 @@ const renderCarrito = async () => {
                 <td>${carrito.producto.descripcion}</td>
                 <td>$ ${carrito.producto.precio}</td>
                 <td>
-                    <button class="btn btn-sm btn-danger" type="button" onclick="eliminarCarrito('${carrito.id}')">
+                    <button class="btn btn-sm btn-secondary" type="button" onclick="eliminarCarrito('${carrito.id}')">
                         Eliminar
                     </button>
                 </td>
