@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+  
+</head>
+
+<body>
+
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container flex-row-reverse">
+            <div id="user"></div>
+            <div id="btnLogout"></div>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+
+
+        <button type="button" class="btn btn-secondary float-right" data-toggle="modal" data-target="#modalAddProduct">
+            Agregar Producto
+        </button>
+
+        <!-- Form busqueda productos -->
+        <form id="formSearch" class="mt-4">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="optionsSearch">Filtrar productos por:</label>
+                </div>
+                <select class="custom-select" name="optionsSearch" id="optionsSearch">
+                    <option selected>Elegir una opción..</option>
+                    <option value="1">Nombre</option>
+                    <option value="2">Código</option>
+                    <option value="3">Precio</option>
+                    <option value="4">Stock</option>
+                </select>
+            </div>
+            <div class="row g-3">
+                <div style="display: none;" class="col-6" id="buscarPorNombre">
+                    <input class="form-control form-control-sm" id="inputSearchNombre" type="text"
+                        name="inputSearchNombre" placeholder="Ingrese un nombre de producto..">
+                </div>
+                <div style="display: none;" class="col-6" id="buscarPorCodigo">
+                    <input class="form-control form-control-sm" id="inputSearchCodigo" type="text"
+                        name="inputSearchCodigo" placeholder="Ingrese un código de producto..">
+                </div>
+                <div style="display: none;" class="col-6" id="buscarPorPrecio">
+                    <input class="form-control form-control-sm" id="inputSearchPrecioMin" type="number" step="0.01"
+                        name="inputSearchPrecioMin" placeholder="Precio Min">
+
+                    <input class="form-control form-control-sm" id="inputSearchPrecioMax" type="number" step="0.01"
+                        name="inputSearchPrecioMax" placeholder="Precio Max">
+                </div>
+                <div style="display: none;" class="col-6" id="buscarPorStock">
+                    <input class="form-control form-control-sm" id="inputSearchStockMin" type="number"
+                        name="inputSearchStockMin" placeholder="Stock Min">
+                    <input class="form-control form-control-sm" id="inputSearchStockMax" type="number"
+                        name="inputSearchStockMax" placeholder="Stock Max">
+                </div>
+                <div style="display: none;" class="col-6" id="formSearchBtns">
+                    <button type="submit" class="btn btn-sm btn-secondary">Buscar</button>
+                    <button type="reset" class="btn btn-sm btn-secondary" onclick="limpiarFiltros()">Limpiar
+                        filtros</button>
+                </div>
+            </div>
+
+        </form>
+
+        <!-- Modal Agregar producto -->
+        <div class="modal fade" id="modalAddProduct" tabindex="-1" role="dialog" aria-labelledby="modalAddProductLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalAddProductLabel">Agregar nuevo producto</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formAddProduct" autocomplete="off">
+                            <div class="row g-3 mb-4">
+                                <div class="col-2">
+                                    <label class="form-label" for="codigo">Código</label>
+                                    <input class="form-control form-control-sm" id="codigo" type="text" name="codigo"
+                                        required>
+                                </div>
+                                <div class="col-4">
+                                    <label class="form-label" for="nombre">Nombre de Producto</label>
+                                    <input class="form-control form-control-sm" id="nombre" type="text" name="nombre"
+                                        required>
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label" for="descripcion">Descripción de Producto</label>
+                                    <input class="form-control form-control-sm" id="descripcion" type="text"
+                                        name="descripcion">
+                                </div>
+                            </div>
+                            <div class="row g-3 mb-4">
+                                <div class="col-6">
+                                    <label class="form-label" for="precio">Precio</label>
+                                    <input class="form-control form-control-sm" id="precio" type="number" step="0.01"
+                                        name="precio" required>
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label" for="stock">Stock</label>
+                                    <input class="form-control form-control-sm" id="stock" type="number" step="0.01"
+                                        name="stock">
+                                </div>
+                            </div>
+                            <div class="row g-3 mb-4">
+                                <div class="col-12">
+                                    <label class="form-label" for="foto">Imagen (url)</label>
+                                    <input class="form-control form-control-sm" id="foto" type="text" name="foto">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-secondary">Guardar</button>
+                            <button id="btnCancelarAdd" type="button" class="btn btn-secondary"
+                                data-dismiss="modal">Cancelar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Editar producto -->
+        <div class="modal fade" id="modalEditProduct" tabindex="-1" role="dialog"
+            aria-labelledby="modalEditProductLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalEditProductLabel">Editar producto</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formEditProduct" autocomplete="off">
+                            <div class="row g-3 mb-4">
+                                <div class="col-2">
+                                    <label class="form-label">Código</label>
+                                    <input class="form-control form-control-sm" id="edit_codigo" type="text"
+                                        name="codigo" required>
+                                </div>
+                                <div class="col-4">
+                                    <label class="form-label">Nombre de Producto</label>
+                                    <input class="form-control form-control-sm" id="edit_nombre" type="text"
+                                        name="nombre" required>
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label">Descripción de Producto</label>
+                                    <input class="form-control form-control-sm" id="edit_descripcion" type="text"
+                                        name="descripcion">
+                                </div>
+                            </div>
+                            <div class="row g-3 mb-4">
+                                <div class="col-6">
+                                    <label class="form-label">Precio</label>
+                                    <input class="form-control form-control-sm" id="edit_precio" type="number"
+                                        step="0.01" name="precio" required>
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label">Stock</label>
+                                    <input class="form-control form-control-sm" id="edit_stock" type="number"
+                                        step="0.01" name="stock">
+                                </div>
+                            </div>
+                            <div class="row g-3 mb-4">
+                                <div class="col-12">
+                                    <label class="form-label">Imagen (url)</label>
+                                    <input class="form-control form-control-sm" id="edit_foto" type="text" name="foto">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-secondary">Guardar</button>
+                            <button id="btnCancelarEdit" type="button" class="btn btn-secondary"
+                                data-dismiss="modal">Cancelar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lista de productos -->
+        <h2 class="mt-4">Lista de productos</h2>
+        <div id="app" class="row row-cols-1 row-cols-md-4 g-4 mb-4"></div>
+
+        <!-- Carrito de compras -->
+        <h2>Carrito de compras</h2>
+        <div class="table-responsive">
+            <table class="table table-dark align-middle">
+                <thead>
+                    <tr>
+                        <th>Foto Producto</th>
+                        <th>Nombre de Producto</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="carrito">
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="container">
+            <button class="btn btn-success float-right" onclick="newOrder()">Generar Pedido</button>
+        </div>
+
+    </div>
+
+    <script src="/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

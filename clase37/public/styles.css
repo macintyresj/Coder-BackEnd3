@@ -1,0 +1,18 @@
+
+.float-rigth{
+    float: right;
+}
+body{
+    background-color: rgb(228, 226, 225);
+}
+.botonLimpiar{
+    float: right;
+
+}
+.ocultar {
+    display: none;
+}
+.card{
+box-shadow: 1px 1px 8px gray;
+}
+
