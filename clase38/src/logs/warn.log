@@ -1,0 +1,6 @@
+[2021-10-23T13:34:34.960] [WARN] warn - Ruta /favicon.ico método GET no implementada o el archivo solicitado no existe
+[2021-10-23T13:35:02.983] [WARN] warn - Password incorrecto!
+[2021-10-23T13:35:10.255] [WARN] warn - Usuario no existe!
+[2021-10-23T13:36:31.245] [WARN] warn - Ruta /blabla método GET no implementada o el archivo solicitado no existe
+[2021-11-15T15:12:05.539] [WARN] warn - Ruta /favicon.ico método GET no implementada o el archivo solicitado no existe
+[2021-11-15T15:12:12.796] [WARN] warn - Usuario no existe!

@@ -1,0 +1,17 @@
+<div class="container py-5">
+
+    <div class="alert alert-secondary">
+        <h3 class="alert-heading">Hasta luego {{username}} </h3>
+    </div>
+
+</div>
+
+<script>
+    const redirect = () => {
+        setTimeout(() => {
+            /*window.location.href = '/login';*/
+            window.location.replace('/login');
+        }, 2000);
+    }
+    redirect();
+</script>
