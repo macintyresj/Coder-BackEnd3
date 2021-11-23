@@ -1,0 +1,12 @@
+[2021-10-23T13:34:34.960] [WARN] warn - Ruta /favicon.ico método GET no implementada o el archivo solicitado no existe
+[2021-10-23T13:35:02.983] [WARN] warn - Password incorrecto!
+[2021-10-23T13:35:10.255] [WARN] warn - Usuario no existe!
+[2021-10-23T13:36:31.245] [WARN] warn - Ruta /blabla método GET no implementada o el archivo solicitado no existe
+[2021-11-15T15:12:05.539] [WARN] warn - Ruta /favicon.ico método GET no implementada o el archivo solicitado no existe
+[2021-11-15T15:12:12.796] [WARN] warn - Usuario no existe!
+[2021-11-22T15:12:44.321] [WARN] warn - Ruta /login método PUT no implementada o el archivo solicitado no existe
+[2021-11-22T15:12:44.718] [WARN] warn - Ruta /login método DELETE no implementada o el archivo solicitado no existe
+[2021-11-22T15:31:34.088] [WARN] warn - Ruta /api/products/json/id:2 método GET no implementada o el archivo solicitado no existe
+[2021-11-22T16:26:01.822] [WARN] warn - Ruta /favicon.ico método GET no implementada o el archivo solicitado no existe
+[2021-11-22T16:26:25.018] [WARN] warn - Ruta /api/productos método GET no implementada o el archivo solicitado no existe
+[2021-11-22T16:32:15.993] [WARN] warn - Ruta /favicon.ico método GET no implementada o el archivo solicitado no existe

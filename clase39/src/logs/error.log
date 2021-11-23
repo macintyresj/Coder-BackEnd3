@@ -1,0 +1,12 @@
+
+[2021-11-15T15:12:44.239] [ERROR] error - Error: connect ETIMEDOUT 13.49.22.0:587
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1146:16) {
+  errno: -4039,
+  code: 'ESOCKET',
+  syscall: 'connect',
+  address: '13.49.22.0',
+  port: 587,
+  command: 'CONN'
+}
+[2021-11-22T15:10:02.827] [ERROR] error - Error en el servidor: Error: listen EADDRINUSE: address already in use :::8080
+[2021-11-22T15:22:22.835] [ERROR] error - Ocurrio un error: E11000 duplicate key error collection: ecommerce.productos index: codigo_1 dup key: { codigo: null }

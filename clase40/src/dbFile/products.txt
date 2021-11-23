@@ -1,0 +1,16 @@
+[
+	{
+		"id": 1,
+		"title": "test1",
+		"price": 4000,
+		"thumbnail": "imagen",
+		"timestamp": "22/11/2021 13:37:01"
+	},
+	{
+		"id": 2,
+		"title": "Hecho a mano Acero Mesa",
+		"price": "900",
+		"thumbnail": "http://placeimg.com/640/480/food",
+		"timestamp": "22/11/2021 13:42:06"
+	}
+]
