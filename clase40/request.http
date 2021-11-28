@@ -1,0 +1,19 @@
+###PRUEBO RUTAS
+
+##PRODUCTOS
+# GET http://localhost:8080/api/products/vista-test
+
+
+# GET http://localhost:8080/api/products/json
+
+# GET http://localhost:8080/info-debug
+
+
+GET http://localhost:8080/info
+
+# GET http://localhost:8080/api/products/vista-test
+
+
+
+
+

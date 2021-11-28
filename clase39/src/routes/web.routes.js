@@ -82,7 +82,6 @@ router.get('/randoms', (req, res) => {
             let obj = {};
             for (let i = 0; i < cant; i++) {
                 let numAleatorio = obtenerRandom(1, 1001);
-                // obj[numAleatorio] = (obj[numAleatorio] || 0) + 1; 
                 if (obj[numAleatorio] == undefined || obj[numAleatorio == null]) {
                     obj[numAleatorio] = 1;
                 } else {

@@ -1,4 +1,4 @@
-// controllers
+// controladores
 const products = require('../app/controllers/products');
 const messages = require('../app/controllers/messages');
 // logger
@@ -21,7 +21,7 @@ module.exports = (io, socket) => {
         })();
 
         (async () => {
-            socket.emit('messages', await messages.read());
+            socket.emit('messages', await messages.list());
         })();
 
         socket.on('newProduct', async (data) => {
@@ -41,7 +41,7 @@ module.exports = (io, socket) => {
                     .then(message => loggerInfo.info(message.sid))
                     .catch(err => loggerError.error(err))
             }
-            io.sockets.emit('messages', await messages.read());
+            io.sockets.emit('messages', await messages.list());
         });
 
         socket.on('deleteProduct', async (data) => {
@@ -51,8 +51,8 @@ module.exports = (io, socket) => {
         });
 
         socket.on('deleteMessages', async (data) => {
-            await messages.delete();
-            io.sockets.emit('messages', await messages.read());
+            await messages.deleteAll();
+            io.sockets.emit('messages', await messages.list());
             loggerInfo.info(`ws: ${data}`);
         });
 

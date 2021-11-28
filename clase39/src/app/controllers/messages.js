@@ -1,7 +1,6 @@
 const mensaje = require('../models/message');
 const { normalize } = require('normalizr');
 const schemaMensajes = require('../models/messageNormalizr');
-// const msgPrueba = require('./mensajesPrueba.json');
 
 class MessagesController {
 

@@ -1,8 +1,7 @@
-//Agrego la vista de productos 
 const producto = require('../models/product');
 
 class ProductsController {
-    //Listar
+
     async list() {
         const products = await producto.find({});
         if (products.length > 0) {
@@ -11,38 +10,38 @@ class ProductsController {
             return [];
         }
     };
-    //Listar por ID
+
     async listId(id) {
         return await producto.findById(id);
     }
 
-    // Guardar
+    // metodo para guardar un producto
     async save(data) {
         if (data.title.trim().length < 1) {
-            throw new Error("Debe ingresar el título.");
+            throw new Error("Campo title requerido.");
         } else if (isNaN(data.price)) {
-            throw new Error("Ingrese un NÚMERO");
+            throw new Error("El campo precio debe ser un número");
         } else if (data.price < 1) {
-            throw new Error("Ingrese un número mayor a 0");
+            throw new Error("El campo precio debe ser mayor o igual a 1.");
         } else {
             return await producto.create(data);
         }
     };
 
-    //Actualizar
+    // metodo para actualizar un producto
     async update(id, data) {
         if (data.title.trim().length < 1) {
-            throw new Error("Debe ingresar el título.");
+            throw new Error("Campo title requerido.");
         } else if (isNaN(data.price)) {
-            throw new Error("Ingrese un NÚMERO");
+            throw new Error("El campo precio debe ser un número");
         } else if (data.price < 1) {
-            throw new Error("Ingrese un número mayor a 0.");
+            throw new Error("El campo precio debe ser mayor o igual a 1.");
         } else {
-            return await producto.findOneAndUpdate({_id: id}, data);
+            return await producto.findOneAndUpdate({_id: id}, data, { new: true });
         }
     };
 
-    // Eliminar
+    // metodo para eliminar un producto
     async delete(id) {
         return await producto.deleteOne({ _id: id });
     };

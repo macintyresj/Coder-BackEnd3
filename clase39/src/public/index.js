@@ -1,29 +1,29 @@
 // obtener usuario autenticado
 (async () => {
-    try{
-    const responseGetUserAuth = await fetch('/getUser');
-    const user = await responseGetUserAuth.json();
-    document.querySelector('#userauth').innerHTML = `
-        <div class="alert alert-secondary">
-            <a class="btn btn-secondary float-rigth" href="/logout">Logout</a>
-            <h3 class="alert-heading">Bienvenido ${user.username}</h3>
-            <img class="d-inline rounded-circle" src="${user.foto || ''}">
-            <p class="d-inline">${user.email || ''}</p>
-        </div>
-    `;
-}catch (errir){
-    console.log(error);
-}
+    try {
+        const responseGetUserAuth = await fetch('/getUser');
+        const user = await responseGetUserAuth.json();
+        document.querySelector('#userauth').innerHTML = `
+            <div class="alert alert-info">
+                <a class="btn btn-warning float-rigth" href="/logout">Logout</a>
+                <h3 class="alert-heading">Bienvenido ${user.username}</h3>
+                <img class="d-inline rounded-circle" src="${user.foto || ''}">
+                <p class="d-inline">${user.email || ''}</p>
+            </div>
+        `;
+    } catch (error) {
+        console.log(error);
+    }
 })();
 
 // inicializamos la conexion ws
 const socket = io.connect();
 
 // renderizamos la tabla con handlebars
-let template = Handlebars.compile(
+var template = Handlebars.compile(
     `
     {{#if hayProductos}}
-    <table class="table table-striped align-middle">
+    <table class="table table-dark align-middle">
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -39,7 +39,7 @@ let template = Handlebars.compile(
                 <td> $ {{ this.price }} </td>
                 <td> <img src="{{ this.thumbnail }}" width="50" height="50" alt="foto producto"> </td>
                 <td> 
-                    <button class="btn btn-sm btn-dark" onclick="editarProducto('{{ this._id }}')">Editar</button> 
+                    <button class="btn btn-sm btn-primary" onclick="editarProducto('{{ this._id }}')">Editar</button> 
                 </td>
                 <td> <button class="btn btn-sm btn-danger" onclick="eliminarProducto('{{ this._id }}')">Eliminar</button> </td>
             </tr>
@@ -47,7 +47,7 @@ let template = Handlebars.compile(
         </tbody>
     </table>
     {{else}}
-    <div class="alert alert-secondary">
+    <div class="alert alert-info">
         <h5 class="alert-heading">No hay productos cargados</h5>
     </div>
     {{/if}}
@@ -56,7 +56,7 @@ let template = Handlebars.compile(
 
 // recibo desde el servidor los productos
 socket.on('products', data => {
-    let HTML = template(data);
+    var HTML = template(data);
     document.getElementById('content').innerHTML = HTML;
 });
 
@@ -195,7 +195,7 @@ const eliminarProducto = async (id) => {
 // renderiza template con nuevos mensajes
 function render(messages) {
     if (messages.length > 0) {
-        let html = messages.map((elem) => {
+        var html = messages.map((elem) => {
             return (`
                 <div class="mb-2">
                     <img src="${elem.author.avatar}" width="30px">
@@ -207,7 +207,7 @@ function render(messages) {
         document.getElementById('messages').innerHTML = html;
     } else {
         // si no hay mensajes renderiza un aviso
-        let html = `
+        var html = `
                 <div>
                     <strong style="color: red;">Ups! Aún no hay mensajes..</strong>
                 </div>`;
@@ -245,12 +245,12 @@ socket.on('messages', messages => {
     console.log('Desnormalizado:', mensajesDesnormalizados, lengthDesnormalizado);
 
     // % de compresión
-    const compresion = (lengthNormalizado/lengthDesnormalizado)*100;
+    const compresion = (lengthNormalizado / lengthDesnormalizado) * 100;
     console.log('Porcentaje de compresión:', compresion)
-    compresion > 100 ? 
-    document.querySelector('#compresion').innerHTML = `<b> - %</b>` 
-    :
-    document.querySelector('#compresion').innerHTML = `<b>${compresion.toFixed(0)}%</b>` 
+    compresion > 100 ?
+        document.querySelector('#compresion').innerHTML = `<b> - %</b>`
+        :
+        document.querySelector('#compresion').innerHTML = `<b>${compresion.toFixed(0)}%</b>`
     render(mensajesDesnormalizados.mensajes);
 });
 
@@ -260,12 +260,12 @@ function deleteMessages() {
 
 function desnormalizarMensajes(data) {
     // defino entidad author
-    const author = new normalizr.schema.Entity('authors', {}, {idAttribute: 'email'});
+    const author = new normalizr.schema.Entity('authors', {}, { idAttribute: 'email' });
 
     // defino entidad texto de cada mensaje
     const mensaje = new normalizr.schema.Entity('mensaje', {
         author: author
-    },{idAttribute: '_id'});
+    }, { idAttribute: '_id' });
 
     // defino la entidad mensajes
     const mensajes = new normalizr.schema.Entity('mensajes', {

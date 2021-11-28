@@ -13,6 +13,7 @@
     "test": "nyc --reporter=text mocha src/test/*.test.js",
     "test-axios": "node ./clienteHttp/tests.js"
   },
+  "license": "ISC",
   "dependencies": {
     "autocannon": "^7.4.0",
     "axios": "^0.21.4",
@@ -45,6 +46,5 @@
     "nyc": "^15.1.0"
   },
   "author": "",
-  "license": "ISC",
   "description": ""
 }

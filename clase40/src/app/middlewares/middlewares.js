@@ -1,6 +1,8 @@
 const session = require('express-session');
+
 const MongoStore = require('connect-mongo')
 const config = require('../../config/config');
+
 const { logger, loggerWarn } = require('../../config/log4js');
 
 // middleware de authentication

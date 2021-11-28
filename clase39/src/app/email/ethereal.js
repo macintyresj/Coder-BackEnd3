@@ -10,5 +10,4 @@ const transporterEthereal = nodemailer.createTransport({
     }
 });
 
-
 module.exports = transporterEthereal;

@@ -39,6 +39,8 @@ class MongoDB {
 
     async read() {
         const dataMongo = await this.model.find({});
+        // let mensajes = dataMongo.map(msg => ({...msg._doc}));
+        // const mensajesNormalizados = normalize({id: "mensajes", mensajes: mensajes}, schemaMensajes);
         return dataMongo;
     }
 

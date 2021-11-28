@@ -2,7 +2,7 @@
     {{> navBar}}
     <div class="container py-5">
 
-        <h1>Listado de productos <span style="font-size: 16px;">(desde handlebars backend)</span></h1>
+        <h1>Listado de productos <span style="font-size: 16px;">(productos generados desde Faker)</span></h1>
 
         {{#if hayProductos}}
         <div class="table-responsive">
@@ -32,7 +32,7 @@
 
         {{else}}
         <div class="alert alert-info">
-            <h5 class="alert-heading">No hay productos cargados</h5>
+            <h5 class="alert-heading">No hay productos.</h5>
         </div>
         {{/if}}
 

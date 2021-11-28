@@ -3,7 +3,7 @@ const expect = require('chai').expect
 const productFakerController = require('../app/controllers/productsFaker');
 
 
-describe('Test API - CRUD Products', () => {
+describe('Test API Rest Full - CRUD Productos', () => {
 
     // listar todos los productos
     describe('GET', () => {
@@ -17,7 +17,7 @@ describe('Test API - CRUD Products', () => {
     // agregar producto
     describe('POST', () => {
         it('should add a random product and show it', async () => {
-            let newProduct = productFakerController.generar(3);
+            let newProduct = productFakerController.generar(1);
 
             let response = await request.post('/api/products').send(newProduct[0])
             expect(response.status).to.eql(200)
@@ -32,7 +32,7 @@ describe('Test API - CRUD Products', () => {
 
     // listar producto por id
     describe('GET', () => {
-        it('should return the product that matches with the id sent', async () => {
+        it('should return the product that matches with the id required', async () => {
             let data = await request.get('/api/products/json')
             let idProduct = data.body[data.body.length-1]._id;
 

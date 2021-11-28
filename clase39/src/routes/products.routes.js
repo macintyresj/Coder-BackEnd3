@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const { loggerError } = require('../config/log4js');
 const controller = require('../app/controllers/products');
+const controllerFaker = require('../app/controllers/productsFaker');
 
-// ruta listar productos total
+// ruta listar productos
 router.get('/', async (req, res) => {
     try {
         const data = await controller.list();
@@ -23,10 +24,27 @@ router.get('/', async (req, res) => {
             }
         );
     } catch (error) {
-        loggerError.error(`Ha ocurrido un error: ${error.message}`)
+        loggerError.error(`Ocurrio un error: ${error.message}`)
         res.json({ error: error.message });
     }
 });
+
+// ruta test productos faker
+router.get('/vista-test', (req, res) => {
+    try {
+        const data = controllerFaker.generar(req.query.cant);
+        res.render('productsListFaker',
+            {
+                products: data,
+                hayProductos: data.length > 0
+            }
+        );
+    } catch (error) {
+        loggerError.error(`Ocurrio un error: ${error.message}`)
+        res.json({ error: error.message });
+    }
+});
+
 router.get('/json', async (req, res) => {
     try {
         res.json(await controller.list());
@@ -36,7 +54,7 @@ router.get('/json', async (req, res) => {
     }
 });
 
-//Listar por ID 
+//Listar por Id
 router.get('/:id', async (req, res) => {
     try {
         res.json(await controller.listId(req.params.id));

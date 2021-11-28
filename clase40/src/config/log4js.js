@@ -1,13 +1,11 @@
 const log4js = require("log4js");
 
 log4js.configure({
-    //apéndices
     appenders: {
         loggerConsole: { type: 'console' },
         loggerWarnFile: { type: 'file', filename: process.cwd()+'/src/logs/warn.log' },
         loggerErrorFile: { type: 'file', filename: process.cwd()+'/src/logs/error.log' }
     },
-    // categorías
     categories: {
         default: { appenders: ['loggerConsole'], level: 'trace' },
         info: { appenders: ['loggerConsole'], level: 'info' },
@@ -16,7 +14,6 @@ log4js.configure({
     }
 });
 
-//Niveles de salida
 const logger = log4js.getLogger(),
     loggerInfo = log4js.getLogger('info'),
     loggerWarn = log4js.getLogger('warn'),

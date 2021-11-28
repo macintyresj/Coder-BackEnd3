@@ -4,7 +4,7 @@ const URL = 'http://localhost:8080'
 
 async function createProduct() {
     try {
-        let response = await axios.post(URL + '/api/products', { title: 'test1', price: 4000, thumbnail: 'imagen' });
+        let response = await axios.post(URL + '/api/products', { title: 'Prueba', price: 777, thumbnail: 'imagen' });
         return response.data;
     } catch (error) {
         console.error(error.response);
@@ -37,7 +37,7 @@ async function updateProduct() {
         const productsLists = await axios.get(URL + '/api/products/json');
         const idProduct = productsLists.data[productsLists.data.length - 1]._id;
 
-        let response = await axios.put(URL + `/api/products/${idProduct}`, { title: 'test update', price: 4000, thumbnail: 'updateimagen' });
+        let response = await axios.put(URL + `/api/products/${idProduct}`, { title: 'Prueba actualizado', price: 777, thumbnail: 'imagen actualizado' });
         return response.data;
     } catch (error) {
         console.error(error.response);
@@ -57,14 +57,18 @@ async function deleteProduct() {
 };
 
 (async () => {
-    console.log('Create Product -> ')
+    console.log('CREATE PRODUCT->')
     console.log(await createProduct())
-    console.log('Get all Products -> ')
+
+    console.log('GET ALL PRODUCTOS->')
     console.log(await getAllProducts())
-    console.log('Get product by ID ->')
+
+    console.log('GET PRODUCT BY ID ->')
     console.log(await getProductbyId())
-    console.log('Update product ->')
+
+    console.log('UPTDATE PRODUCT ->')
     console.log(await updateProduct())
-    console.log('Delete Product ->')
+
+    console.log('DELETE PRODUCT ->')
     console.log(await deleteProduct())
 })();

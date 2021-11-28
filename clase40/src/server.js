@@ -1,4 +1,4 @@
-//dependencias
+// importo dependencias
 const express = require('express');
 const handlebars = require('express-handlebars');
 const cookieParser = require('cookie-parser');
@@ -7,19 +7,17 @@ const cluster = require('cluster');
 const numCPUs = require('os').cpus().length;
 const compression = require('compression');
 
-const MongoDB = require('./database/connection'); 
+const MongoDB = require('./database/connection'); // importo la conexión de la DB
 
-// ------------------------MODULOS---------------------------------
-
-//configs
+// modulos configuraciones
 const config = require('./config/config');
 const PORT = config.PORT;
 const { loggerInfo, loggerError } = require('./config/log4js')
 
-// middlewares
+// modulos middlewares
 const middlewares = require('./app/middlewares/middlewares');
 
-// rutas
+// importo el modulo de rutas
 const productsRouter = require('./routes/products.routes');
 const authRouter = require('./routes/auth.routes');
 const webRouter = require('./routes/web.routes');
@@ -29,13 +27,13 @@ const app = express();
 const http = require('http').Server(app)
 const io = require('socket.io')(http);
 
-//------------------------HANDLEBARS------------------------------------------------------
+//-------------------------------- MOTOR DE PLANTILLAS------------------------------------------------------
 app.engine("hbs", handlebars(config.templateEngine));
-app.set("view engine", "hbs"); 
+app.set("view engine", "hbs"); // esrablecemos motor de plantillas
 app.set("views", `${__dirname}/views`); // directorio de archivos plantilla
 
 
-//------------------------------MIDDLEWARES----------------------------------------------------------
+//-------------------------------- MIDDLEWARES -------------------------------------------------------------
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -44,7 +42,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(compression())
 
-//--------------------------GRAPHQL-------------------------------
+
+//--------------------------------------GRAPHQL -----------------------------------------------------------------
 var { graphqlHTTP } = require('express-graphql');
 const schema = require('./graphql/schemaGraphql');
 const root = require('./graphql/graphql');
@@ -55,8 +54,7 @@ app.use('/graphql', graphqlHTTP({
 }));
 
 
-
-//------------------------------RUTAS-----------------------------------------------------
+//------------------------------------- RUTAS ----------------------------------------------------------------------
 app.use(webRouter);
 app.use('/api/products', /*middlewares.checkAuthentication,*/ productsRouter);
 app.use(authRouter);
@@ -66,18 +64,18 @@ app.use(express.static(__dirname + '/public')); // espacio público del servidor
 app.use(middlewares.error404); // middleware 404
 
 
-//-------------------------------SOCKETS -----------------------------------------------------------
+//------------------------------------- SOCKETS --------------------------------------------------------------------
 const webSocket = require('./services/sockets');
 const onConnection = (socket) => {
     webSocket(io, socket);
 }
 io.on('connection', onConnection);
 
-//PERSISTENCIA 
+
 const PersistenciaFactory = require('./app/persistencia/factoryPersistencia');
 loggerInfo.info(`Tipo Persistencia: ${config.PERSISTENCIA}`)
 
-// Patron singleton
+// PATRON SINGLETON
 const instancia1 = PersistenciaFactory.getPersistencia('products', config.PERSISTENCIA);
 const instancia2 = PersistenciaFactory.getPersistencia('products', config.PERSISTENCIA);
 const instancia3 = PersistenciaFactory.getPersistencia('products', config.PERSISTENCIA);
@@ -93,7 +91,7 @@ instancia5.printValue();
 instancia6.printValue();
 
 
-//------------------------------SERVER MODE ------------------------------------------------------------
+//-------------------------------- SERVER MODE -----------------------------------------------------------------
 let modoCluster = process.argv[5] === "FORK";
 
 if (modoCluster && cluster.isMaster) {

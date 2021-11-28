@@ -11,7 +11,7 @@ class UsersController {
     login(username, password, done) {
         User.findOne({ username: username },
             (err, user) => {
-                // ocurreo un error
+                // ocurrió un error
                 if (err) {
                     loggerError.error('Error de login' + err);
                     return done(err);

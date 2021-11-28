@@ -34,9 +34,9 @@ class MongoDB {
         if (data.title.trim().length < 1) {
             throw new Error("Campo title requerido.");
         } else if (isNaN(data.price)) {
-            throw new Error("Debe introducir un número");
+            throw new Error("El campo precio debe ser un número");
         } else if (data.price < 1) {
-            throw new Error("El número debe ser mayor o igual a 1.");
+            throw new Error("El campo precio debe ser mayor o igual a 1.");
         } else {
             return await this.nombreColeccion.create(data);
         }

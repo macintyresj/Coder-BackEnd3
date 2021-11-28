@@ -3,15 +3,20 @@ const router = express.Router();
 const passport = require('../app/auth/passport');
 const config = require('../config/config');
 const transporter = require('../app/email/ethereal');
+const { loggerError, loggerInfo } = require('../config/log4js');
 
-//--------------------------LOGIN----------------------------------------------------------------
+//------------------------------------ LOGIN ------------------------------------------------------------------
 router.get('/login', (req, res) => {
-    res.render('auth/login');
+    try {
+        res.render('auth/login');
+    } catch (error) {
+        loggerError.error(error)
+    }
 });
 
 router.post('/login', passport.authenticate('login', { successRedirect: '/', failureRedirect: '/faillogin' }));
 
-//------------------------Facebook Login--------------------------------------
+//-------------------------------------Facebook Login ---------------------------------------------------------
 router.get('/auth/facebook', passport.authenticate('facebook'));
 router.get('/auth/facebook/callback', passport.authenticate('facebook',
     {
@@ -22,44 +27,56 @@ router.get('/auth/facebook/callback', passport.authenticate('facebook',
 
 
 router.get('/faillogin', (req, res) => {
-    res.status(400).render('auth/failLogin');
+    try {
+        res.status(400).render('auth/failLogin');
+    } catch (error) {
+        loggerError.error(error)
+    }
 });
 
 
-//------------------------SIGNUP----------------------------------------------------
+//------------------------------------------- SIGNUP --------------------------------------------------------
 router.get('/signup', (req, res) => {
-    res.render('auth/signup');
+    try {
+        res.render('auth/signup');
+    } catch (error) {
+        loggerError.error(error)
+    }
 });
 
 router.post('/signup', passport.authenticate('signup', { successRedirect: '/', failureRedirect: '/failsignup' }));
 
 router.get('/failsignup', (req, res) => {
-    res.status(400).render('auth/failSignup');
+    try {
+        res.status(400).render('auth/failSignup');
+    } catch (error) {
+        loggerError.error(error)
+    }
 });
 
 
-//------------------------LOGOUT-------------------------------------------------------------------
+//--------------------------------------------------- LOGOUT ---------------------------------------------------------
 router.get('/logout', (req, res) => {
     try {
         const usuario = req.session.userAuth.username ?? '';
         req.logout();
 
         transporter.sendMail({
-            from: 'App CoderHouse',
+            from: 'App Node-express CoderHouse',
             to: config.MAIL_TO,
-            subject: `Logout - ${usuario}`,
+            subject: `Logout Facebook - ${usuario}`,
             html: `<p>Usuario: ${usuario}</p><p>Fecha y hora: ${new Date().toLocaleString()}</p>`
         }, (err, info) => {
             if (err) {
-                console.log(err)
+                loggerError.error(err)
                 return err
             }
-            console.log(info);
+            loggerInfo.info(info);
         })
 
         res.render('auth/logout', { username: usuario });
     } catch (error) {
-        console.log(error)
+        loggerError.error(error)
     }
 });
 

@@ -1,4 +1,4 @@
-//dependencias
+// dependencias
 const express = require('express');
 const handlebars = require('express-handlebars');
 const cookieParser = require('cookie-parser');
@@ -9,7 +9,7 @@ const compression = require('compression');
 
 const MongoDB = require('./database/connection'); 
 
-// ------------------------MODULOS---------------------------------
+//-------------------------------MODULOS---------------------------
 
 //configs
 const config = require('./config/config');
@@ -29,13 +29,13 @@ const app = express();
 const http = require('http').Server(app)
 const io = require('socket.io')(http);
 
-//------------------------HANDLEBARS------------------------------------------------------
+//---------------------------------------HANDLEBARS -------------------------------------------------------
 app.engine("hbs", handlebars(config.templateEngine));
 app.set("view engine", "hbs"); 
 app.set("views", `${__dirname}/views`); // directorio de archivos plantilla
 
 
-//------------------------------MIDDLEWARES----------------------------------------------------------
+//---------------------------------- MIDDLEWARES ---------------------------------------------------------------
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -44,7 +44,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(compression())
 
-//--------------------------GRAPHQL-------------------------------
+
+//----------------------------------- GRAPHQL ----------------------------------------------------------------------
 var { graphqlHTTP } = require('express-graphql');
 const schema = require('./graphql/schemaGraphql');
 const root = require('./graphql/graphql');
@@ -55,8 +56,7 @@ app.use('/graphql', graphqlHTTP({
 }));
 
 
-
-//------------------------------RUTAS-----------------------------------------------------
+//------------------------------------- RUTAS---------------------------------------------------------------------------
 app.use(webRouter);
 app.use('/api/products', /*middlewares.checkAuthentication,*/ productsRouter);
 app.use(authRouter);
@@ -66,7 +66,7 @@ app.use(express.static(__dirname + '/public')); // espacio público del servidor
 app.use(middlewares.error404); // middleware 404
 
 
-//-------------------------------SOCKETS -----------------------------------------------------------
+//------------------------------------- SOCKETS -------------------------------------------------------------------------
 const webSocket = require('./services/sockets');
 const onConnection = (socket) => {
     webSocket(io, socket);
@@ -74,7 +74,7 @@ const onConnection = (socket) => {
 io.on('connection', onConnection);
 
 
-//------------------------------SERVER MODE ------------------------------------------------------------
+//-------------------------------------- SERVER MODE-----------------------------------------------------------------------
 let modoCluster = process.argv[5] === "CLUSTER";
 
 if (modoCluster && cluster.isMaster) {
@@ -95,7 +95,7 @@ if (modoCluster && cluster.isMaster) {
 } else {
     const server = http.listen(PORT, async () => {
         loggerInfo.info(`Servidor escuchando en http://localhost:${PORT} - Proceso Node.js: ${process.pid}`);
-        const db = MongoDB.getMongoDBInstance(config.URL_MONGO_ATLAS);
+        const db = new MongoDB(config.URL_MONGO_ATLAS);
         await db.connect();
     });
 

@@ -4,7 +4,7 @@ const { loggerError } = require('../config/log4js');
 const controller = require('../app/controllers/products');
 const controllerFaker = require('../app/controllers/productsFaker');
 
-// ruta listar productos total
+// ruta listar productos
 router.get('/', async (req, res) => {
     try {
         const data = await controller.list();
@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
             }
         );
     } catch (error) {
-        loggerError.error(`Ocurrio un error: ${error.message}`)
+        loggerError.error(`Ha ocurrido un error: ${error.message}`)
         res.json({ error: error.message });
     }
 });
@@ -40,7 +40,7 @@ router.get('/vista-test', (req, res) => {
             }
         );
     } catch (error) {
-        loggerError.error(`Ocurrio un error: ${error.message}`)
+        loggerError.error(`Ha ocurrido un error: ${error.message}`)
         res.json({ error: error.message });
     }
 });
@@ -49,47 +49,47 @@ router.get('/json', async (req, res) => {
     try {
         res.json(await controller.list());
     } catch (error) {
-        loggerError.error(`Ocurrio un error: ${error.message}`)
+        loggerError.error(`Ha ocurrido un error: ${error.message}`)
         res.json({ error: error.message });
     }
 });
 
-// ruta listar producto individual
+//Listar por ID
 router.get('/:id', async (req, res) => {
     try {
         res.json(await controller.listId(req.params.id));
     } catch (error) {
-        loggerError.error(`Ocurrio un error: ${error.message}`)
+        loggerError.error(`Ha ocurrido un error: ${error.message}`)
         res.json({ error: error.message });
     }
 });
 
-// ruta agregar producto
+// agregar producto
 router.post('/', async (req, res) => {
     try {
         res.json(await controller.save(req.body));
     } catch (error) {
-        loggerError.error(`Ocurrio un error: ${error.message}`)
+        loggerError.error(`Ha ocurrido un error: ${error.message}`)
         res.json({ error: error.message });
     }
 });
 
-// ruta actualizar producto
+// actualizar producto
 router.put('/:id', async (req, res) => {
     try {
         res.json(await controller.update(req.params.id, req.body));
     } catch (error) {
-        loggerError.error(`Ocurrio un error: ${error.message}`)
+        loggerError.error(`Ha ocurrido un error: ${error.message}`)
         res.json({ error: error.message });
     }
 });
 
-// ruta borrar producto
+// borrar producto
 router.delete('/:id', async (req, res) => {
     try {
         res.json(await controller.delete(req.params.id));
     } catch (error) {
-        loggerError.error(`Ocurrio un error: ${error.message}`)
+        loggerError.error(`Ha ocurido un error: ${error.message}`)
         res.json({ error: error.message });
     }
 });

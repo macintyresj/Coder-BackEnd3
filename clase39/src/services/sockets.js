@@ -1,4 +1,4 @@
-// controllers
+// controladores
 const products = require('../app/controllers/products');
 const messages = require('../app/controllers/messages');
 // logger
