@@ -1,0 +1,60 @@
+[2021-11-29T16:35:35.160] [ERROR] error - Error: Cannot find module './products/undefined'
+Require stack:
+- C:\Users\Yoma\Desktop\CoderBE13440-main\Coder-BackEnd3\clase42\src\app\DAO\DAOFactory.js.js
+- C:\Users\Yoma\Desktop\CoderBE13440-main\Coder-BackEnd3\clase42\src\app\controllers\products.js
+- C:\Users\Yoma\Desktop\CoderBE13440-main\Coder-BackEnd3\clase42\src\routes\products.routes.js
+- C:\Users\Yoma\Desktop\CoderBE13440-main\Coder-BackEnd3\clase42\src\server.js
+    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:880:15)
+    at Function.Module._load (internal/modules/cjs/loader.js:725:27)
+    at Module.require (internal/modules/cjs/loader.js:952:19)
+    at require (internal/modules/cjs/helpers.js:88:18)
+    at Function.getPersistencia (C:\Users\Yoma\Desktop\CoderBE13440-main\Coder-BackEnd3\clase42\src\app\DAO\DAOFactory.js.js:8:34)
+    at new ProductsController (C:\Users\Yoma\Desktop\CoderBE13440-main\Coder-BackEnd3\clase42\src\app\controllers\products.js:7:38)
+    at Object.<anonymous> (C:\Users\Yoma\Desktop\CoderBE13440-main\Coder-BackEnd3\clase42\src\app\controllers\products.js:32:18)
+    at Module._compile (internal/modules/cjs/loader.js:1063:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)
+    at Module.load (internal/modules/cjs/loader.js:928:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:769:14)
+    at Module.require (internal/modules/cjs/loader.js:952:19)
+    at require (internal/modules/cjs/helpers.js:88:18)
+    at Object.<anonymous> (C:\Users\Yoma\Desktop\CoderBE13440-main\Coder-BackEnd3\clase42\src\routes\products.routes.js:4:20)
+    at Module._compile (internal/modules/cjs/loader.js:1063:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\Yoma\\Desktop\\CoderBE13440-main\\Coder-BackEnd3\\clase42\\src\\app\\DAO\\DAOFactory.js.js',
+    'C:\\Users\\Yoma\\Desktop\\CoderBE13440-main\\Coder-BackEnd3\\clase42\\src\\app\\controllers\\products.js',
+    'C:\\Users\\Yoma\\Desktop\\CoderBE13440-main\\Coder-BackEnd3\\clase42\\src\\routes\\products.routes.js',
+    'C:\\Users\\Yoma\\Desktop\\CoderBE13440-main\\Coder-BackEnd3\\clase42\\src\\server.js'
+  ]
+}
+[2021-11-29T16:35:40.767] [ERROR] error - Error: Cannot find module './messages/undefined'
+Require stack:
+- C:\Users\Yoma\Desktop\CoderBE13440-main\Coder-BackEnd3\clase42\src\app\DAO\DAOFactory.js.js
+- C:\Users\Yoma\Desktop\CoderBE13440-main\Coder-BackEnd3\clase42\src\app\controllers\products.js
+- C:\Users\Yoma\Desktop\CoderBE13440-main\Coder-BackEnd3\clase42\src\routes\products.routes.js
+- C:\Users\Yoma\Desktop\CoderBE13440-main\Coder-BackEnd3\clase42\src\server.js
+    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:880:15)
+    at Function.Module._load (internal/modules/cjs/loader.js:725:27)
+    at Module.require (internal/modules/cjs/loader.js:952:19)
+    at require (internal/modules/cjs/helpers.js:88:18)
+    at Function.getPersistencia (C:\Users\Yoma\Desktop\CoderBE13440-main\Coder-BackEnd3\clase42\src\app\DAO\DAOFactory.js.js:8:34)
+    at new MessagesController (C:\Users\Yoma\Desktop\CoderBE13440-main\Coder-BackEnd3\clase42\src\app\controllers\messages.js:8:26)
+    at Object.<anonymous> (C:\Users\Yoma\Desktop\CoderBE13440-main\Coder-BackEnd3\clase42\src\app\controllers\messages.js:13:18)
+    at Module._compile (internal/modules/cjs/loader.js:1063:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)
+    at Module.load (internal/modules/cjs/loader.js:928:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:769:14)
+    at Module.require (internal/modules/cjs/loader.js:952:19)
+    at require (internal/modules/cjs/helpers.js:88:18)
+    at Object.<anonymous> (C:\Users\Yoma\Desktop\CoderBE13440-main\Coder-BackEnd3\clase42\src\services\sockets.js:3:18)
+    at Module._compile (internal/modules/cjs/loader.js:1063:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\Yoma\\Desktop\\CoderBE13440-main\\Coder-BackEnd3\\clase42\\src\\app\\DAO\\DAOFactory.js.js',
+    'C:\\Users\\Yoma\\Desktop\\CoderBE13440-main\\Coder-BackEnd3\\clase42\\src\\app\\controllers\\products.js',
+    'C:\\Users\\Yoma\\Desktop\\CoderBE13440-main\\Coder-BackEnd3\\clase42\\src\\routes\\products.routes.js',
+    'C:\\Users\\Yoma\\Desktop\\CoderBE13440-main\\Coder-BackEnd3\\clase42\\src\\server.js'
+  ]
+}
